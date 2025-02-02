@@ -324,27 +324,27 @@ def main():
         key="analysis_type_select"
     )
 
-    # if analysis_type == "Signal Strength Analysis":
-    #     plot_signal_strength(df_filtered)
-    #     plot_signal_strength_over_time(df_filtered)
-    #     plot_filtered_ap_strength_day_night(df_filtered)
-    # elif analysis_type == "Human Presence Trend":
-    #     plot_human_presence_trends(df_filtered)
-    #     plot_human_presence_overlay(df_filtered)
-    # elif analysis_type == "Device Analysis":
-    #     plot_device_usage(df_filtered)
-    #     plot_device_performance_comparison(df_filtered)
+    if analysis_type == "Signal Strength Analysis":
+        plot_signal_strength(df_filtered)
+        plot_signal_strength_over_time(df_filtered)
+        plot_filtered_ap_strength_day_night(df_filtered)
+    elif analysis_type == "Human Presence Trend":
+        plot_human_presence_trends(df_filtered)
+        plot_human_presence_overlay(df_filtered)
+    elif analysis_type == "Device Analysis":
+        plot_device_usage(df_filtered)
+        plot_device_performance_comparison(df_filtered)
 
-    # st.title("Model Selection")
-    # st.write("## Model Selection")
-    # model_choice = st.selectbox("Select a model to test", ["KNN", "XGBoost"])
+    st.title("Model Selection")
+    st.write("## Model Selection")
+    model_choice = st.selectbox("Select a model to test", ["KNN", "XGBoost"])
 
-    # if X_test is not None and y_test is not None:
-    #     model_filenames = {
-    #         "KNN": "knn_model",
-    #         "XGBoost": "xgb_model"
-    #     }
-    #     load_and_test_model(model_filenames[model_choice])
+    if X_test is not None and y_test is not None:
+        model_filenames = {
+            "KNN": "knn_model",
+            "XGBoost": "xgb_model"
+        }
+        load_and_test_model(model_filenames[model_choice])
     
     st.title("Conclusion")
     st.write("###### Three models(knn,random forest,xgboost) are trained on data. ensamble learning models(random forest, xgboost) performed well on data.")
