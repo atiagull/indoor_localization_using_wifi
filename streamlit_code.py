@@ -19,6 +19,21 @@ else:
     st.error("Error: 'Cid_encoded' column not found in test_data.csv")
     X_test, y_test = None, None
 
+st.title("Introduction")
+st.write("###### Aim of this project is to identify the location of person/device inside the building based on various wifi access points (APs) signals strength as well as environment variable such as open/closed room and human presence or absence. data is collected using 4 devices.")
+st.write("###### Unique identifier for the indoor region")
+st.write("###### AP001-AP172: RSS values from 172 AP")
+st.write("###### Rs: Room status indicator; 1 for open, 0 for closed rooms")
+st.write("###### Hpr: Human presence indicator; 1 for presence, 0 for absence.")
+st.write("###### Ts: Timestamp")
+st.markdown("""
+###### Did: Device identifier for data collection, representing:  
+- **D1**: Samsung Galaxy Tab 2, Android 4.1.1  
+- **D2**: Samsung Galaxy Tab E, Android 5.0  
+- **D3**: Samsung Galaxy Tab 10, Android 4.0  
+- **D4**: Motorola Moto E (2nd Gen), Android 5.1  
+""")
+
 def plot_missing_values_heatmap(df):
     """Function to visualize missing values across selected APs using a heatmap."""
     # Extract AP columns
@@ -299,34 +314,43 @@ def load_and_test_model(model_name):
 
 def main():
     
+    
+
     st.write("## Choose Analysis Type")
+
     analysis_type = st.selectbox(
         "Choose Analysis Type",
         options=["Signal Strength Analysis", "Human Presence Trend", "Device Analysis"],
         key="analysis_type_select"
     )
 
-    if analysis_type == "Signal Strength Analysis":
-        plot_signal_strength(df_filtered)
-        plot_signal_strength_over_time(df_filtered)
-        plot_filtered_ap_strength_day_night(df_filtered)
-    elif analysis_type == "Human Presence Trend":
-        plot_human_presence_trends(df_filtered)
-        plot_human_presence_overlay(df_filtered)
-    elif analysis_type == "Device Analysis":
-        plot_device_usage(df_filtered)
-        plot_device_performance_comparison(df_filtered)
+    # if analysis_type == "Signal Strength Analysis":
+    #     plot_signal_strength(df_filtered)
+    #     plot_signal_strength_over_time(df_filtered)
+    #     plot_filtered_ap_strength_day_night(df_filtered)
+    # elif analysis_type == "Human Presence Trend":
+    #     plot_human_presence_trends(df_filtered)
+    #     plot_human_presence_overlay(df_filtered)
+    # elif analysis_type == "Device Analysis":
+    #     plot_device_usage(df_filtered)
+    #     plot_device_performance_comparison(df_filtered)
 
-    st.write("## Model Selection")
-    model_choice = st.selectbox("Select a model to test", ["KNN", "XGBoost"])
+    # st.title("Model Selection")
+    # st.write("## Model Selection")
+    # model_choice = st.selectbox("Select a model to test", ["KNN", "XGBoost"])
 
-    if X_test is not None and y_test is not None:
-        model_filenames = {
-            "KNN": "knn_model",
-            "XGBoost": "xgb_model"
-        }
-        load_and_test_model(model_filenames[model_choice])
-
+    # if X_test is not None and y_test is not None:
+    #     model_filenames = {
+    #         "KNN": "knn_model",
+    #         "XGBoost": "xgb_model"
+    #     }
+    #     load_and_test_model(model_filenames[model_choice])
+    
+    st.title("Conclusion")
+    st.write("###### Three models(knn,random forest,xgboost) are trained on data. ensamble learning models(random forest, xgboost) performed well on data.")
+    st.write("###### random forest accuracy: 94.48%")
+    st.write("###### xgboost forest accuracy: 90.95%")
+    st.write("###### random forest accuracy: 73.53%")
 
 if __name__ == "__main__":
     main()
